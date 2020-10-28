@@ -424,6 +424,7 @@ button {
     background: rgba(0, 0, 0, 0.4);
     display: none;
     z-index: 999;
+    overflow-y: auto;
 }
 
 .is-open {
