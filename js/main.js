@@ -23,6 +23,7 @@ let login = localStorage.getItem('gloDelivery')
 
 
 function toggleModalAuth() {
+  loginInput.style.borderColor = '';
   modalAuth.classList.toggle('is-open')
 }
 
@@ -50,15 +51,20 @@ function notAuthorized() {
 
   function logIn(ev) {
     ev.preventDefault()
-    login = loginInput.value
-    localStorage.setItem('gloDelivery', login)
-    console.log(login)
-    toggleModalAuth()
-    authButton.removeEventListener('click', toggleModalAuth)
-    closeButton.removeEventListener('click', toggleModalAuth)
-    logInForm.removeEventListener('submit', logIn)
-    logInForm.reset()
-    checkAuth()
+    if (loginInput.value.trim()){
+      login = loginInput.value.trim()
+      localStorage.setItem('gloDelivery', login)
+      console.log(login)
+      toggleModalAuth()
+      authButton.removeEventListener('click', toggleModalAuth)
+      closeButton.removeEventListener('click', toggleModalAuth)
+      logInForm.removeEventListener('submit', logIn)
+      logInForm.reset()
+      checkAuth()
+    } else  {
+      loginInput.style.borderColor = 'red';
+      loginInput.value = ''
+    }    
   }
 
   authButton.addEventListener('click', toggleModalAuth)
