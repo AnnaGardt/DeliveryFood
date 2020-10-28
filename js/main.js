@@ -50,7 +50,14 @@ function notAuthorized() {
 
   function logIn(ev) {
     ev.preventDefault()
-    login = loginInput.value
+    login = loginInput.value.trim()
+    if (login === '') {
+      loginInput.style.border = '1px solid red';
+      loginInput.addEventListener('change', function (){
+        loginInput.style.border = ''
+      })
+      return;
+    }
     localStorage.setItem('gloDelivery', login)
     console.log(login)
     toggleModalAuth()
